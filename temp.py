@@ -32,3 +32,5 @@ elif i != 9:
     print('что напечатается?')
 else:
     print('да i это не 9')
+def drive():
+    print(123)
