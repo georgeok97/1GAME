@@ -74,6 +74,11 @@ while run:
     for e in pygame.event.get():
         if e.type == pygame.QUIT or e.type == pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
             run = False
+        elif e.type == pygame.MOUSEBUTTONDOWN:
+            if e.button == 1:
+                mouse_pos = pygame.miuse.get_pos
+                # print(mouse_pos)
+                
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_RIGHT]:
@@ -104,10 +109,11 @@ while run:
                 brick = pygame.draw.rect(screen, BRICK_COLOR, [x, y, BRICK_WIDTH, BRICK_HEIGHT])
                 pygame.draw.rect(screen, BRICK_COLOR_2, [x, y, BRICK_WIDTH, BRICK_HEIGHT], 2)
                 if brick.colliderect(player_rect):
-                    if color == BLUE:
-                        color = RED
-                        face(color)
-                    penalty += 0.1
+                    if player_rect.x < WIN_WIDTH - PLAYER_SIZE * 2:
+                        if color == BLUE:
+                            color = RED
+                            face(color)
+                        penalty += 0.1
             x += BRICK_WIDTH
         y += BRICK_HEIGHT
         x = dx
